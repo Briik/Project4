@@ -10,7 +10,6 @@ class ContractsController < ApplicationController
   	end
 	  def index
 		  @contracts = Contract.all
-		  render json: @contracts.to_json, status: :ok
 	  end
 
 	  def show
@@ -19,11 +18,11 @@ class ContractsController < ApplicationController
 		  render json: @contract.to_json, status: :ok
       end
 
-	  def update
-      end
-      def new
-        #   this should be an automated process that occurs every weekday at 6:10pm
-      end
-      def create
-      end
+	  def json
+		  @contracts = Contract.all
+		  render json: @contracts.to_json, status: :ok
+	  end
+
+	  def angular_index
+	  end
 end
