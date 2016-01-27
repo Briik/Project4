@@ -19,16 +19,20 @@ $(document).ready(function() {
         }
     };
 
-    d3.select("#d3me").append("svg").attr("width", 100 + "%").attr("height", 100);
-
     JSON.parse($("#contracts_json").html()).forEach(function(contract) {
         assignData(contract);
     });
-
-    d3.select("svg").selectAll("rect").data(dataArray).enter().append("rect")
-    .attr("class", "bar")
-    .attr("width", 2)
-    .attr("height", 4)
-    .style("fill", "lightgreen");
-
+    var svgArea = d3.select("#d3me")
+        .append("svg")
+        .attr("width", 100 + "%")
+        .attr("height", 1000);
+    var bars = svgArea.selectAll("rect")
+        .data(dataArray)
+        .enter()
+        .append("rect")
+    var barAttr = bars.attr("class", "bar")
+        .attr("width", 2)
+        .attr("height", function(d){return d / 1000000})
+        .style("fill", "lightgreen")
+        .style("x", function(d,i){return i * 2});
 });
