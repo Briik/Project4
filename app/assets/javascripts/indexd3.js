@@ -19,16 +19,16 @@ $(document).ready(function() {
         }
     };
 
-    d3.select("#d3me").append("svg").attr("width", 50).attr("height", 50)
+    d3.select("#d3me").append("svg").attr("width", 100 + "%").attr("height", 100);
 
     JSON.parse($("#contracts_json").html()).forEach(function(contract) {
         assignData(contract);
-        d3.select("svg")
-            .append("svg")
-            .append("rect")
-            .attr("class", "bar")
-            .attr("width", 2)
-            .attr("height", 25)
-            .style("fill", "lightgreen");
     });
+
+    d3.select("svg").selectAll("rect").data(dataArray).enter().append("rect")
+    .attr("class", "bar")
+    .attr("width", 2)
+    .attr("height", 4)
+    .style("fill", "lightgreen");
+
 });
