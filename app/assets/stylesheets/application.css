@@ -8,6 +8,7 @@ html{
 }
 .bar{
     background: lightgreen;
+    display: inline-block;
 }
 .bar:hover{
     background: yellow;
