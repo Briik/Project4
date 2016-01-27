@@ -6,6 +6,9 @@ html{
     width: 100%;
     margin: 0, auto;
 }
+.bar{
+    background: lightgreen;
+}
 .bar:hover{
     background: yellow;
 }
