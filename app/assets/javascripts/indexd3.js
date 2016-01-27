@@ -50,11 +50,7 @@ $(document).ready(function() {
         .attr("y", function(d) {
             return chartHeight - Math.sqrt(d[0] / barDataDivisor);
         })
-        .style("x", function(d,i){return i * 2})
-        .on("mouseover", function(){
-            return d3.select(this).style("fill", secondaryBarColor)})
-        .on("mouseout", function(){
-            return d3.select(this).style("fill", initialBarColor)});
+        .style("x", function(d,i){return i * 2});
 
     var titles = barAttr.append("svg:title")
         .text(function(d) { return d[1]; });
@@ -62,13 +58,15 @@ $(document).ready(function() {
     var barTooltips = bars
         .on("mouseover", function(){
             var targetHtml = d3.select(this)[0][0].textContent;
-            return tooltip.text(targetHtml)
-            .style("visibility", "visible")
-            .style("background", "rgba(0, 0, 0, 0.4)");})
+            d3.select(this).style("fill", secondaryBarColor);
+            tooltip.text(targetHtml)
+                .style("visibility", "visible")
+                .style("background", "rgba(0, 0, 0, 0.4)");})
         .on("mousemove", function(){
             return tooltip.style("top",
 (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
         .on("mouseout", function(){
-            return tooltip.style("visibility", "hidden");
+            d3.select(this).style("fill", initialBarColor);
+            tooltip.style("visibility", "hidden");
     });
 });
