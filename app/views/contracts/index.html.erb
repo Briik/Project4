@@ -3,11 +3,11 @@
 <h3><%= @totalNum %> has been spent on large military contracts since June 1, 2014</h3>
 <p id="numMissing">LOADING</p>
 <div id="d3me"></div>
-<ul>
+<!-- <ul>
 <% @contracts.each do |contract| %>
 <li><%= link_to contract.title, contract_path(contract.id) %></li>
 <% end %>
-</ul>
+</ul> -->
 <script id="contracts_json" type="text/json">
     <%= raw @contractsJSON %>
 </script>

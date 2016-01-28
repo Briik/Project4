@@ -1,6 +1,9 @@
+// This .js provides the d3 functionality for the index page.
+// It builds the bar chart and places the missing number of days on the page.
+// Should not interfere with other pages -  uses jQuery id DOM selectors.
 $(document).ready(function() {
-    var totalNum = 0;
-    var number = 0.00;
+    // var totalNum = 0;
+    // var number = 0.00;
     var totalmissing = 0;
     var percentTotalMissing = 0;
     // dataArray is an Array of Arrays [number, title]
@@ -12,13 +15,14 @@ $(document).ready(function() {
 
     // This is populating the arrays with data on the contracts
     function assignData(contract) {
+
         if (!contract.dollar_amt) {
             dataArray.push([0, contract.title]);
             totalmissing++;
         } else {
             dataArray.push([parseInt(contract.dollar_amt), contract.title]);
-            number -= parseFloat(-contract.dollar_amt).toFixed(2);
-            totalNum = (number).toLocaleString("currency", "USD");
+            // number -= parseFloat(-contract.dollar_amt).toFixed(2);
+            // totalNum = (number).toLocaleString("currency", "USD");
         }
     };
 
@@ -57,6 +61,7 @@ $(document).ready(function() {
 
     var barTooltips = bars
         .on("mouseover", function(){
+            // console.log(d3.select(this)[0]);
             var targetHtml = d3.select(this)[0][0].textContent;
             d3.select(this).style("fill", secondaryBarColor);
             tooltip.text(targetHtml)
@@ -67,6 +72,16 @@ $(document).ready(function() {
 (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
         .on("mouseout", function(){
             d3.select(this).style("fill", initialBarColor);
-            tooltip.style("visibility", "hidden");
+            tooltip.style("visibility", "hidden")
+        .on("click", function(){
+            var link_id = 780;
+            var url = "localhost:3000/contracts/" + link_id;
+            window.location = url;
+            });
+        });
+
+    $('#numMissing').text(function(){
+        percentTotalMissing = ((totalmissing / dataArray.length) * 100).toFixed(2) + "%";
+        return "Records for " + totalmissing + " days are missing dollar values. Roughly " + percentTotalMissing;
     });
 });
