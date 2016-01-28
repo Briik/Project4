@@ -26,7 +26,7 @@ $(document).ready(function() {
         }
     };
 
-    JSON.parse($("#contracts_json").html()).forEach(function(contract) {
+    var contracts = JSON.parse($("#contracts_json").html()).forEach(function(contract) {
         assignData(contract);
     });
 
@@ -56,6 +56,16 @@ $(document).ready(function() {
         })
         .style("x", function(d,i){return i * 2});
 
+    var linkToPage = barAttr.append("svg:a")
+        .attr("xlink:href", function(d){
+            $.each(contracts, function(i, data){
+                console.log(data);
+                if (data.pubdate === d.title) {
+                    return "localhost:3000/contracts/" + data.id;
+                }
+            });
+        });
+
     var titles = barAttr.append("svg:title")
         .text(function(d) { return d[1]; });
 
@@ -72,12 +82,7 @@ $(document).ready(function() {
 (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
         .on("mouseout", function(){
             d3.select(this).style("fill", initialBarColor);
-            tooltip.style("visibility", "hidden")
-        .on("click", function(){
-            var link_id = 780;
-            var url = "localhost:3000/contracts/" + link_id;
-            window.location = url;
-            });
+            tooltip.style("visibility", "hidden");
         });
 
     $('#numMissing').text(function(){
