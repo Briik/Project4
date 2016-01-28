@@ -26,7 +26,8 @@ $(document).ready(function() {
         }
     };
 
-    var contracts = JSON.parse($("#contracts_json").html()).forEach(function(contract) {
+    var contracts = JSON.parse($("#contracts_json").html());
+    contracts.forEach(function(contract) {
         assignData(contract);
     });
 
@@ -56,18 +57,18 @@ $(document).ready(function() {
         })
         .style("x", function(d,i){return i * 2});
 
-    var linkToPage = barAttr.append("svg:a")
-        .attr("xlink:href", function(d){
-            $.each(contracts, function(i, data){
-                console.log(data);
-                if (data.pubdate === d.title) {
-                    return "localhost:3000/contracts/" + data.id;
-                }
-            });
-        });
-
     var titles = barAttr.append("svg:title")
         .text(function(d) { return d[1]; });
+
+    // var linkToPage = barAttr.append("svg:a")
+    //     .attr("xlink:href", function(d){
+    //         $.each(contracts, function(i,data){
+    //             // console.log(d[1]);
+    //             if (data.title == d[1]) {
+    //                 return "localhost:3000/contracts/" + data.id + "";
+    //             }
+    //         });
+    //     });
 
     var barTooltips = bars
         .on("mouseover", function(){
@@ -83,6 +84,15 @@ $(document).ready(function() {
         .on("mouseout", function(){
             d3.select(this).style("fill", initialBarColor);
             tooltip.style("visibility", "hidden");
+        })
+        .on("click", function(data){
+            var uri = "";
+            contracts.forEach(function(contract){
+                    if (contract.title === data[1]) {
+                        uri = "contracts/" + contract.id;
+                    };
+                });
+            window.location = uri;
         });
 
     $('#numMissing').text(function(){
