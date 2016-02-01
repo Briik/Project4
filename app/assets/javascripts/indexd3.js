@@ -17,7 +17,7 @@ $(document).ready(function() {
     function assignData(contract) {
 
         if (!contract.dollar_amt) {
-            dataArray.push([0, contract.title]);
+            dataArray.push([null, contract.title]);
             totalmissing++;
         } else {
             dataArray.push([parseInt(contract.dollar_amt), contract.title]);
@@ -31,6 +31,10 @@ $(document).ready(function() {
         assignData(contract);
     });
 
+    var heightScale = d3.scale.linear().domain([0, d3.max(dataArray, function(d) {
+        return d[0];
+    })]).range([0, chartHeight]);
+
     var tooltip = d3.select("body")
         .append("div")
         .style("position", "absolute")
@@ -40,7 +44,7 @@ $(document).ready(function() {
 
     var svgArea = d3.select("#d3me")
         .append("svg")
-        .attr("width", 100 + "%")
+        .attr("width", 2 * dataArray.length)
         .attr("height", chartHeight);
 
     var bars = svgArea.selectAll("rect")
@@ -50,15 +54,21 @@ $(document).ready(function() {
 
     var barAttr = bars.attr("class", "bar")
         .attr("width", 2)
-        .attr("height", function(d){return Math.sqrt(d[0] / barDataDivisor)})
+        .attr("height", function(d) {
+            return heightScale(d[0]);
+        })
         .style("fill", initialBarColor)
         .attr("y", function(d) {
-            return chartHeight - Math.sqrt(d[0] / barDataDivisor);
+            return chartHeight - heightScale(d[0]);
         })
-        .style("x", function(d,i){return i * 2});
+        .style("x", function(d, i) {
+            return i * 2
+        });
 
     var titles = barAttr.append("svg:title")
-        .text(function(d) { return d[1]; });
+        .text(function(d) {
+            return d[1];
+        });
 
     // var linkToPage = barAttr.append("svg:a")
     //     .attr("xlink:href", function(d){
@@ -71,31 +81,32 @@ $(document).ready(function() {
     //     });
 
     var barTooltips = bars
-        .on("mouseover", function(){
+        .on("mouseover", function() {
             // console.log(d3.select(this)[0]);
             var targetHtml = d3.select(this)[0][0].textContent;
             d3.select(this).style("fill", secondaryBarColor);
             tooltip.text(targetHtml)
                 .style("visibility", "visible")
-                .style("background", "rgba(0, 0, 0, 0.4)");})
-        .on("mousemove", function(){
-            return tooltip.style("top",
-(d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
-        .on("mouseout", function(){
+                .style("background", "rgba(0, 0, 0, 0.4)");
+        })
+        .on("mousemove", function() {
+            return tooltip.style("top", (d3.event.pageY - 10) + "px").style("left", (d3.event.pageX + 10) + "px");
+        })
+        .on("mouseout", function() {
             d3.select(this).style("fill", initialBarColor);
             tooltip.style("visibility", "hidden");
         })
-        .on("click", function(data){
+        .on("click", function(data) {
             var uri = "";
-            contracts.forEach(function(contract){
-                    if (contract.title === data[1]) {
-                        uri = "contracts/" + contract.id;
-                    };
-                });
+            contracts.forEach(function(contract) {
+                if (contract.title === data[1]) {
+                    uri = "contracts/" + contract.id;
+                };
+            });
             window.location = uri;
         });
 
-    $('#numMissing').text(function(){
+    $('#numMissing').text(function() {
         percentTotalMissing = ((totalmissing / dataArray.length) * 100).toFixed(2) + "%";
         return "Records for " + totalmissing + " days are missing dollar values. Roughly " + percentTotalMissing;
     });

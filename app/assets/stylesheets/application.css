@@ -2,15 +2,16 @@ html{
     color: white;
     background: black;
 }
+.header, #d3me{
+    width: 80%;
+    margin: auto;
+    text-align: center;
+}
 #d3me{
-    width: 100%;
-    margin: 0, auto;
+    transform: scale(-1,1);
 }
 .bar{
     background: lightgreen;
     color: lightgreen;
     display: inline-block;;
-}
-.bar:hover{
-    background: yellow;
 }
