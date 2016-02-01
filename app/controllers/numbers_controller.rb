@@ -9,15 +9,7 @@ class NumbersController < ApplicationController
 	  end
   end
       def index
-          @contracts = Contract.all
-          def get_num
-			  tot = 0
-		  	@contracts.each do |a|
-			  tot += a.dollar_amt.to_i
-		  	end
-			  return tot
-		  end
-          @totalNum = formatted_number(get_num)
+          @totalNum = formatted_number(Contract.sum(:dollar_amt))
 		  render json: {value: @totalNum}
       end
   end
