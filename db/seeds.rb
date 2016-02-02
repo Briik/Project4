@@ -2,6 +2,7 @@ require 'nokogiri'
 require 'open-uri'
 
 Contract.destroy_all
+Agency.destroy_all
 
 doc = Nokogiri::XML(open('http://www.defense.gov/DesktopModules/ArticleCS/RSS.ashx?max=1095&ContentType=400&Site=727')) do |config|
     config.options = Nokogiri::XML::ParseOptions::NONET
@@ -23,7 +24,8 @@ for day in days do
                     pubdate: DateTime.httpdate(day.xpath('pubDate').to_s.split('>')[1].split('<')[0]),
                     dollar_amt: money,
                     creator: day.xpath('dc:creator').to_s.split('>')[1].split('<')[0])
-    Agency.create(name: day.xpath('description').to_s.split('CONTRACTS	').split('	')[0])
+    Agency.create(name: day.xpath('description').to_s.split('CONTRACTS	')[1].to_s.split('	')[0])
 end
 
+agencies = Agency.all
 contracts = Contract.all
