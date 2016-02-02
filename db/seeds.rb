@@ -9,6 +9,7 @@ doc = Nokogiri::XML(open('http://www.defense.gov/DesktopModules/ArticleCS/RSS.as
 end
 
 days = doc.xpath('//item')
+
 for day in days do
 
     int_money = /(?=[$])[$,\d]{1,16}/.match(day.xpath('description').to_s).to_s

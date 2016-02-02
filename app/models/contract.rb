@@ -4,7 +4,7 @@ class Contract < ActiveRecord::Base
         require 'nokogiri'
         require 'open-uri'
 
-        doc = Nokogiri::XML(open('http://www.defense.gov/DesktopModules/ArticleCS/RSS.ashx?max=1095&ContentType=400&Site=727')) do |config|
+        doc = Nokogiri::XML(open('http://www.defense.gov/DesktopModules/ArticleCS/RSS.ashx?max=1&ContentType=400&Site=727')) do |config|
             config.options = Nokogiri::XML::ParseOptions::NONET
         end
 

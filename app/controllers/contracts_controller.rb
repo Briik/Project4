@@ -11,7 +11,7 @@ class ContractsController < ApplicationController
 
     def show
         @contract = Contract.find(params[:id])
-        @agency = Agency.find("name: ")
+        @agency = Agency.find_by id: @contract.agency_id
         @money = formatted_number(@contract.dollar_amt)
         respond_to do |format|
             format.html  # show.html.erb
