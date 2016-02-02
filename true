@@ -1,0 +1,3 @@
+      invoke  active_record
+      create    db/migrate/20160202144321_add_index.rb
+Running via Spring preloader in process 62052

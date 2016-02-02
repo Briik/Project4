@@ -1,7 +1,11 @@
 <h2><%= @contract.title %></h2>
-<p>Date reported: <%= @contract.pubdate %></p>
+<p>Date reported:
+    <%= @contract.pubdate %></p>
 <% if @contract.dollar_amt %>
-    <p>Ammount: <%= @money %></p>
+<p>Ammount:
+    <%= @money %></p>
 <% end %>
-<p>Description: <%= @contract.description %></p>
-<p>Reported by: <%= @contract.creator %></p>
+<p>Description:
+    <%= @contract.description %></p>
+<p>Reported by:
+    <%= @contract.creator %></p>
