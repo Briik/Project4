@@ -9,9 +9,12 @@ $(document).ready(function() {
     // dataArray is an Array of Arrays [number, title]
     var dataArray = [];
     var chartHeight = 300;
-    var barDataDivisor = 100000;
     var initialBarColor = "lightgreen";
     var secondaryBarColor = "red";
+
+    function numberShrinker(number){
+        return Math.sqrt(number);
+    };
 
     // This is populating the arrays with data on the contracts
     function assignData(contract) {
