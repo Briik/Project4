@@ -1,4 +1,4 @@
-<h2><%= @contract.title %></h2>
+<h2><%= link_to @contract.title, @contract %></h2>
 <h3><% if @contract.agency_id != nil %>Agency or Department associated with this contract: <%= link_to @agency.name, @agency %><% end %></h3>
 <p>Date reported:
     <%= @contract.pubdate %></p>

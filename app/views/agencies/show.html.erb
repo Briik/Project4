@@ -1,3 +1,7 @@
-<p>This is a show page, the agency name should show below.</p>
-<h2><%= @agency.name %></h2>
-<h3>Value of registered contracts attributable to this entity: <%= @totalVal %></h3>
+<h2><%=link_to @agency.name, @agency %></h2>
+<h3>Value of registered contracts attributable to this entity: <%= @total_val %> Representing <%= @percent_val.round(2) %>% of total DoD spending on large contracts since July 1, 2014.</h3>
+<ul>
+<% @contracts.each do |contract| %>
+    <li><%= link_to (formatted_number(contract.dollar_amt).to_s + ' reported on ' + contract.pubdate.to_date.to_s), contract_path(contract.id) %></li>
+<% end %>
+</ul>
