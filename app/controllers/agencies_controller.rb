@@ -1,6 +1,6 @@
 class AgenciesController < ApplicationController
     def index
-        @agencies = Agency.all
+        @agencies = Agency.all.order(name: :asc)
         @total_num = formatted_number(Contract.sum(:dollar_amt))
     end
     def show

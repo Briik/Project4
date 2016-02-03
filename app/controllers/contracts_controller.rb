@@ -3,7 +3,7 @@ class ContractsController < ApplicationController
         @contracts = Contract.all
         @contracts_JSON = @contracts.to_json
         @total_num = formatted_number(Contract.sum(:dollar_amt))
-        @agencies = Agency.all
+        @agencies = Agency.all.order(name: :asc)
         respond_to do |format|
             format.html  # show.html.erb
             format.json  { render :json => @contracts }
