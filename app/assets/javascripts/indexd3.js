@@ -43,7 +43,7 @@ $(document).ready(function() {
         .style("position", "absolute")
         .style("z-index", "10")
         .style("visibility", "hidden")
-        .text("a simple tooltip");
+        .text(" ");
 
     var svgArea = d3.select("#d3me")
         .append("svg")
@@ -90,7 +90,7 @@ $(document).ready(function() {
             d3.select(this).style("fill", secondaryBarColor);
             tooltip.text(targetHtml)
                 .style("visibility", "visible")
-                .style("background", "rgba(0, 0, 0, 0.4)");
+                .style("background", "rgba(255, 255, 255, 0.4)");
         })
         .on("mousemove", function() {
             return tooltip.style("top", (d3.event.pageY - 10) + "px").style("left", (d3.event.pageX + 10) + "px");
