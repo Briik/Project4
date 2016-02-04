@@ -1,0 +1,11 @@
+<p>The registered agency for Contract <%= @contract.id %>, "<%= @contract.title %>," is <%= @agency.name %></p>
+<%= form_for @contract do |contract_form| %>
+<%= hidden_field_tag(:title, @contract.title) %>
+<%= hidden_field_tag(:link, @contract.link) %>
+<%= hidden_field_tag(:description, @contract.description) %>
+<%= hidden_field_tag :pubdate, @contract.pubdate %>
+<%= hidden_field_tag :dollar_amt, @contract.dollar_amt %>
+Created By: <%= contract_form.text_field :creator %>
+Change the Agency: <%= select_tag(:agency_id, options_for_select(@agencies)) %>
+<%= submit_tag("Submit") %>
+<% end %>

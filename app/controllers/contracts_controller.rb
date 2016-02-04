@@ -20,7 +20,35 @@ class ContractsController < ApplicationController
         end
     end
 
+    def edit
+        @contract = Contract.find(params[:id])
+        def formlist
+            result = Array.new
+            Agency.all.each do |agency|
+                agent = Array.new
+                agent.push agency.name
+                agent.push agency.id
+                result.push agent
+            end
+            return result
+        end
+        @agencies = formlist
+        @agency = Agency.find_by_id @contract.agency_id
+    end
+
+    def update
+        @contract = Contract.find(params[:id])
+        @agency = Agency.find(params[:agency_id])
+        @contract.update(contracts_params.merge(agency: @agency))
+        redirect_to '/'
+      end
+
     def json
         render json: Contract.all.to_json, status: :ok
     end
+
+    private
+  def contracts_params
+    params.require(:contract).permit(:title, :link, :description, :pubdate, :dollar_amt, :creator, :agency_id)
+  end
 end
