@@ -4,6 +4,7 @@ gem 'nokogiri'
 gem 'rack-cors', require: 'rack/cors'
 gem 'whenever', :require => false
 gem 'd3_rails'
+gem 'bootstrap', '~> 4.0.0.alpha3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'

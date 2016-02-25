@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MilContracts</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -8,7 +9,7 @@
   <title>U.S. Military Spending</title>
 </head>
 <body>
-    <div class="menu">
+    <div class="container" "menu">
         <span><%= link_to "Home - Contracts", '/' %></span>
         <span><%= link_to "Agencies", agencies_path() %></span>
     </div>

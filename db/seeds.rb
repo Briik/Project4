@@ -10,7 +10,7 @@ end
 
 days = doc.xpath('//item')
 
-# works for 98.72773536895674% of days.
+# works for 98.7% of days.
 def findAgency(nok)
     agencyName = /[A-Z\. ]+/.match(nok.inner_text.split('CONTRACTS')[1].to_s).to_s
     theOne = Agency.find_by_name agencyName
