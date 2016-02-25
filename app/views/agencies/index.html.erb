@@ -1,6 +1,8 @@
-Agencies that have published contracts:
-<ul>
+<div class="header">
+    <h1 class="jumbotron">Reporting Agencies</h1>
+</div>
+<div class="container list-group breakdown">
     <% @agencies.each do |agency| %>
-    <li><%= link_to agency.name, agency %></li>
+    <%= link_to agency.name, agency, {:class => "list-group-item"} %>
     <% end %>
-</ul>
+</div>

@@ -1,11 +1,14 @@
-<h2><%=link_to @agency.name, @agency %></h2>
-<h3>Value of registered contracts attributable to this entity: <%= @total_val %> Representing <%= @percent_val.round(2) %>% of total DoD spending on large contracts since July 1, 2014.</h3>
+<div class="header">
+    <h2><%=link_to @agency.name, @agency %></h2>
+    <h5>Value of registered contracts attributable to this entity: <%= @total_val %> Representing <%= @percent_val.round(2) %>% of total DoD spending on large contracts since July 1, 2014.</h5>
+</div>
+
 <div class ="container" id="d3me"></div>
-<ul>
+<div class="container list-group breakdown">
 <% @contracts.each do |contract| %>
-    <li><%= link_to (formatted_number(contract.dollar_amt).to_s + ' reported on ' + contract.pubdate.to_date.to_s), contract_path(contract.id) %></li>
+    <%= link_to (formatted_number(contract.dollar_amt).to_s + ' reported on ' + contract.pubdate.to_date.to_s), contract_path(contract.id), {:style => 'font-weight:bold', :class => "list-group-item"} %>
 <% end %>
-</ul>
+</div>
 <script id="contracts_json" type="text/json">
     <%= raw @contracts_JSON %>
 </script>

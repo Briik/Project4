@@ -1,12 +1,25 @@
-<h2><%= link_to @contract.title, @contract %></h2>
-<h3><% if @contract.agency_id != nil %>Agency or Department associated with this contract: <%= link_to @agency.name, @agency %><% end %></h3>
-<p>Date reported:
-    <%= @contract.pubdate %></p>
-<% if @contract.dollar_amt %>
-<p>Ammount:
-    <%= @money %></p>
-<% end %>
-<p>Description:
-    <%= @contract.description %></p>
-<p>Reported by:
-    <%= @contract.creator %></p>
+<div class="header">
+    <h2><%= link_to @contract.title, @contract %></h2>
+    <h4><% if @contract.agency_id != nil %>Agency or Department associated with this contract:
+        <%= link_to @agency.name, @agency %><% end %></h4>
+</div>
+<div class="container-fluid">
+    <dl>
+        <dt>Date reported</dt>
+        <dd><%= @contract.pubdate %></dd>
+        <% if @contract.dollar_amt %>
+        <dt>Ammount</dt>
+        <dd><%= @money %></dd>
+        <dd>~
+            <%= @percent_of_agency %>% of reported
+            <%= @agency.name %>
+            spending.</dd>
+        <dd>~
+            <%= @percent %>% of total reported DOD spending.</dd>
+        <% end %>
+        <dt>Description</dt>
+        <dd><%= @contract.description %></dd>
+        <dt>Reported by</dt>
+    </dd><%= @contract.creator %></dd>
+</dl>
+</div>

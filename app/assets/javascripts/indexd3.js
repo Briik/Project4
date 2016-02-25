@@ -73,16 +73,6 @@ $(document).ready(function() {
             return d[1];
         });
 
-    // var linkToPage = barAttr.append("svg:a")
-    //     .attr("xlink:href", function(d){
-    //         $.each(contracts, function(i,data){
-    //             // console.log(d[1]);
-    //             if (data.title == d[1]) {
-    //                 return "localhost:3000/contracts/" + data.id + "";
-    //             }
-    //         });
-    //     });
-
     var barTooltips = bars
         .on("mouseover", function() {
             // console.log(d3.select(this)[0]);
