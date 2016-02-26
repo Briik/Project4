@@ -1,6 +1,6 @@
 <div class="header">
     <h2><%= link_to @contract.title, @contract %></h2>
-    <h4><% if @contract.agency_id != nil %>Agency or Department associated with this contract:
+    <h4><% if @contract.agency_id != nil %>Agency or Department associated with this daily report:
         <%= link_to @agency.name, @agency %><% end %></h4>
 </div>
 <div class="container-fluid">
