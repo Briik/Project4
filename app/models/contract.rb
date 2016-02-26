@@ -3,14 +3,12 @@ class Contract < ActiveRecord::Base
 
     # percent value of individual contract compared to ALL contracts
     def percent_val
-        return (dollar_amt / Contract.sum(:dollar_amt)) * 100
+        dollar_amt ? ((dollar_amt / Contract.sum(:dollar_amt)) * 100) : nil
     end
 
     def percent_of_agency
-        return (dollar_amt / Contract.where(agency_id: id).sum(:dollar_amt)) * 100
+            dollar_amt ? ((dollar_amt / Contract.where({agency_id: agency_id}).sum(:dollar_amt)) * 100) : nil
     end
-
-    class << self
 
         def self.daily_update
             require 'nokogiri'
@@ -38,5 +36,4 @@ class Contract < ActiveRecord::Base
                                 creator: day.xpath('dc:creator').to_s.split('>')[1].split('<')[0])
             end
         end
-    end
 end

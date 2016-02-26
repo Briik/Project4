@@ -14,8 +14,6 @@ class ContractsController < ApplicationController
         @contract = Contract.find(params[:id])
         @agency = Agency.find_by id: @contract.agency_id
         @money = formatted_number(@contract.dollar_amt)
-        @percent = '%.2f' % @contract.percent_val
-        @percent_of_agency = '%.2f' % @contract.percent_of_agency
         respond_to do |format|
             format.html  # show.html.erb
             format.json  { render :json => @contract }

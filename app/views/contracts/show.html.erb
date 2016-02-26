@@ -11,11 +11,11 @@
         <dt>Ammount</dt>
         <dd><%= @money %></dd>
         <dd>~
-            <%= @percent_of_agency %>% of reported
+            <%= @contract.percent_of_agency.round(2) %>% of reported
             <%= @agency.name %>
             spending.</dd>
         <dd>~
-            <%= @percent %>% of total reported DOD spending.</dd>
+            <%= @contract.percent_val.round(2) %>% of total reported DOD spending.</dd>
         <% end %>
         <dt>Description</dt>
         <dd><%= @contract.description %></dd>
