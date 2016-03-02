@@ -12,7 +12,6 @@ class ContractsController < ApplicationController
 
     def show
         @contract = Contract.find(params[:id])
-        @agency = Agency.find_by id: @contract.agency_id
         @money = formatted_number(@contract.dollar_amt)
         respond_to do |format|
             format.html  # show.html.erb
@@ -33,13 +32,10 @@ class ContractsController < ApplicationController
             return result
         end
         @agencies = formlist
-        @agency = Agency.find_by_id @contract.agency_id
     end
 
     def update
-        @contract = Contract.find(params[:id])
-        @agency = Agency.find(params[:agency_id])
-        @contract.update(contracts_params.merge(agency: @agency))
+        Contract.find(params[:id]).update(contracts_params.merge(agency: Agency.find(params[:agency_id])))
         redirect_to '/'
       end
 

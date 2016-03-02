@@ -1,4 +1,4 @@
-<p>The registered agency for Contract <%= @contract.id %>, "<%= @contract.title %>," is <%= @agency.name %></p>
+<p>The registered agency for Contract <%= @contract.id %>, "<%= @contract.title %>," is <%= @contract.agency.name %></p>
 <%= form_for @contract do |contract_form| %>
 <%= hidden_field_tag(:title, @contract.title) %>
 <%= hidden_field_tag(:link, @contract.link) %>

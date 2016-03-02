@@ -1,7 +1,7 @@
 <div class="header">
     <h2><%= link_to @contract.title, @contract %></h2>
     <h4><% if @contract.agency_id != nil %>Agency or Department associated with this daily report:
-        <%= link_to @agency.name, @agency %><% end %></h4>
+        <%= link_to @contract.agency.name, @contract.agency %><% end %></h4>
 </div>
 <div class="container-fluid">
     <dl>
@@ -12,7 +12,7 @@
         <dd><%= @money %></dd>
         <dd>~
             <%= @contract.percent_of_agency.round(2) %>% of reported
-            <%= @agency.name %>
+            <%= @contract.agency.name %>
             spending.</dd>
         <dd>~
             <%= @contract.percent_val.round(2) %>% of total reported DOD spending.</dd>

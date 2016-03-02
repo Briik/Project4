@@ -1,6 +1,10 @@
 class Contract < ActiveRecord::Base
     belongs_to :agency
 
+    def agency
+        Agency.find_by id: agency_id
+    end
+
     # percent value of individual contract compared to ALL contracts
     def percent_val
         dollar_amt ? ((dollar_amt / Contract.sum(:dollar_amt)) * 100) : nil
