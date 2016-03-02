@@ -1,0 +1,10 @@
+<% 1000.times do |n| %>
+contract_<%= n %>:
+  title: <%= "contract#{n}" %>
+  link: <%= "user#{n}.com" %>
+  description: <%= "This is contract number #{n}. Here's an ampersand... &amp;" %>
+  pubdate: <%= DateTime.current() %>
+  dollar_amt: <%= n * 1000.00 %>
+  creator: <%= "Some_dude_#{n}" %>
+  agency_id: <%= "user#{rand(101).to_i}" %>
+<% end %>

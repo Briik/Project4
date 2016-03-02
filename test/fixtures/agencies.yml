@@ -1,0 +1,4 @@
+<% 100.times do |n| %>
+agency_<%= n %>:
+  name: <%= "user#{n}" %>
+<% end %>

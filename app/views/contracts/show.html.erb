@@ -18,7 +18,7 @@
             <%= @contract.percent_val.round(2) %>% of total reported DOD spending.</dd>
         <% end %>
         <dt>Description</dt>
-        <dd><%= @contract.description %></dd>
+        <dd><%= raw @contract.description %></dd>
         <dt>Reported by</dt>
     </dd><%= @contract.creator %></dd>
 </dl>
