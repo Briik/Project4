@@ -35,7 +35,9 @@ class ContractsController < ApplicationController
     end
 
     def update
-        Contract.find(params[:id]).update(contracts_params.merge(agency: Agency.find(params[:agency_id])))
+        contract = Contract.find(params[:id])
+        contract.update(contracts_params.merge(agency: Agency.find(params[:agency_id])))
+        flash[:notice] = "#{contract.title} was created."
         redirect_to '/'
       end
 
