@@ -91,7 +91,7 @@ $(document).on('page:change', function() {
                     uri = "contracts/" + contract.id;
                 };
             });
-            window.location = uri;
+            window.location.pathname = uri;
         });
 
     $('#numMissing').text(function() {
