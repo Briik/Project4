@@ -74,8 +74,7 @@ $(document).ready(function() {
             var targetHtml = d3.select(this)[0][0].textContent;
             d3.select(this).style("fill", secondaryBarColor);
             tooltip.text(targetHtml)
-                .style("visibility", "visible")
-                .style("background", "rgba(255, 255, 255, 0.4)");
+                .style("visibility", "visible");
         })
         .on("mousemove", function() {
             return tooltip.style("top", (d3.event.pageY - 10) + "px").style("left", (d3.event.pageX + 10) + "px");
