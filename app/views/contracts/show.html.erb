@@ -20,6 +20,10 @@
         <dt>Description</dt>
         <dd><%= raw @contract.description %></dd>
         <dt>Reported by</dt>
-    </dd><%= @contract.creator %></dd>
+        </dd><%= @contract.creator %></dd>
+        <% if @contract.users.to_a.length > 0 %>
+        <dt>Modified by</dt>
+        <dd><%= @contract.users.to_a %></dd>
+        <% end %>
 </dl>
 </div>

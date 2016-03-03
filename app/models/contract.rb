@@ -1,6 +1,10 @@
 class Contract < ActiveRecord::Base
     belongs_to :agency
 
+    def users
+        (User.where id: user_id).map
+    end
+
     def agency
         Agency.find_by id: agency_id
     end
