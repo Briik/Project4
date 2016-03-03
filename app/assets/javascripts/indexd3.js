@@ -13,19 +13,16 @@ $(document).ready(function() {
     var secondaryBarColor = "red";
 
     function numberShrinker(number){
-        return Math.sqrt(number);
+        return Math.log(number);
     };
 
-    // This is populating the arrays with data on the contracts
     function assignData(contract) {
 
         if (!contract.dollar_amt) {
             dataArray.push([null, contract.title]);
             totalmissing++;
         } else {
-            dataArray.push([parseInt(contract.dollar_amt), contract.title]);
-            // number -= parseFloat(-contract.dollar_amt).toFixed(2);
-            // totalNum = (number).toLocaleString("currency", "USD");
+            dataArray.push([numberShrinker(parseInt(contract.dollar_amt)), contract.title]);
         }
     };
 
@@ -34,9 +31,7 @@ $(document).ready(function() {
         assignData(contract);
     });
 
-    var heightScale = d3.scale.linear().domain([0, d3.max(dataArray, function(d) {
-        return d[0];
-    })]).range([0, chartHeight]);
+    var heightScale = d3.scale.linear().domain([d3.min(dataArray, function(d){return d[0]}), d3.max(dataArray, function(d) {return d[0]})]).range([0, chartHeight]);
 
     var tooltip = d3.select("body")
         .append("div")
