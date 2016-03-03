@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>MilContracts</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-  <title>U.S. Military Spending</title>
-</head>
-<body>
-    <div class="container-fluid menu">
-        <span><%= link_to "Home - Contracts", '/' %></span>
-        <span><%= link_to "Agencies", agencies_path() %></span>
-        <p class="notice"><%= notice %></p>
-        <p class="alert"><%= alert %></p>
-    </div>
-<%= yield %>
-
-</body>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>MilContracts</title>
+        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+        <%= csrf_meta_tags %>
+        <title>U.S. Military Spending</title>
+    </head>
+    <body>
+        <div class="container-fluid menu">
+            <span><%= link_to "Home - Contracts", '/' %></span>
+            <span><%= link_to "Agencies", agencies_path() %></span>
+            <p class="notice"><%= notice %></p>
+            <p class="alert"><%= alert %></p>
+        </div>
+        <%= yield %>
+        <% if current_user %>
+        <footer><h3>ADMIN:</h3><h5><%= link_to 'Signout', destroy_user_session_path, :method => :delete %></h5></footer>
+        <% else %>
+        <footer><small><%= link_to 'Register to edit', new_user_registration_path %></small> - 
+        <small><%= link_to 'Login', new_user_session_path %></small></footer>
+        <% end %>
+    </body>
 </html>

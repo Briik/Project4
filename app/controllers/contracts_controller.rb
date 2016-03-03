@@ -1,4 +1,5 @@
 class ContractsController < ApplicationController
+    before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
     def index
         @contracts = Contract.all
         @contracts_JSON = @contracts.to_json
