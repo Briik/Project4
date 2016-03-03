@@ -1,7 +1,7 @@
 // This .js provides the d3 functionality for the index page.
 // It builds the bar chart and places the missing number of days on the page.
 // Should not interfere with other pages -  uses jQuery id DOM selectors.
-$(document).ready(function() {
+$(document).on('page:change', function() {
     // var totalNum = 0;
     // var number = 0.00;
     var totalmissing = 0;
