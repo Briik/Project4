@@ -2,8 +2,7 @@
     <h2><%= link_to @contract.title, @contract %></h2>
     <h4><% if @contract.agency_id != nil %>Agency or Department associated with this daily report:
         <%= link_to @contract.agency.name, @contract.agency %><% end %></h4>
-</div>
-<div class="container-fluid">
+</div>ils 
     <dl>
         <dt>Date reported</dt>
         <dd><%= @contract.pubdate %></dd>
