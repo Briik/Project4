@@ -1,4 +1,5 @@
 class AgenciesController < ApplicationController
+    before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
     def index
         @agencies = Agency.all.order(name: :asc)
         @total_num = formatted_number(Contract.sum(:dollar_amt))

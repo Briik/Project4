@@ -1,8 +1,11 @@
 <div class="header">
     <h2><%= link_to @contract.title, @contract %></h2>
+    <% if current_user %>
+    <%= link_to "[ADMIN OPTION: edit this contract]", edit_contract_path %>
+    <% end %>
     <h4><% if @contract.agency_id != nil %>Agency or Department associated with this daily report:
         <%= link_to @contract.agency.name, @contract.agency %><% end %></h4>
-</div>ils 
+</div>
     <dl>
         <dt>Date reported</dt>
         <dd><%= @contract.pubdate %></dd>
