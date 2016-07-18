@@ -1,5 +1,5 @@
 Introduction:
-This app is currently in development and is receiving commits on a regular basis. Commits are not always deployed to Heroku or Github, in the interest of workflow and functionality, therefore, you may not be looking at the most up-to-date version.
+This app is currently in development and does not reflect current capabilities. Commits are not always deployed to Heroku or Github, in the interest of workflow and functionality, therefore, you may not be looking at the most up-to-date version.
 
 Concept:
 This app will display, in an easily navigable and consumer-friendly way, information and analysis of U.S. defense spending, using up-to-date information.  
